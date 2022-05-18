@@ -12,7 +12,18 @@ public class Calculator {
                 + "To perform calculations, enter the requested data\n");
         
         double a = setDouble();
-        String operation = setSupportedOperation();
+        String operation;
+        
+        while (true) {
+            try {
+                operation = setSupportedOperation();
+                break;
+            } 
+            catch (UnsupportedOperationException ex) {
+                System.out.println("Operation is not supported");
+            }
+        }
+            
         double b = setDouble();
         
         double result = 0;
@@ -56,20 +67,13 @@ public class Calculator {
     
     public static String setSupportedOperation() {
         
-        while (true) {
-            try {
-                System.out.println("Enter one of the supported operations: +, -, *, /, %");
-                Scanner in = new Scanner(System.in);
-                String operation = in.next();
-                if ("+".equals(operation) || "-".equals(operation) || "*".equals(operation) ||
-                        "/".equals(operation) || "%".equals(operation))
-                    return operation;
-                else
-                    throw new UnsupportedOperationException();
-            } 
-            catch (UnsupportedOperationException ex) {
-                System.out.println("Operation is not supported");
-            }
-        }
+        System.out.println("Enter one of the supported operations: +, -, *, /, %");
+        Scanner in = new Scanner(System.in);
+        String operation = in.next();
+        if ("+".equals(operation) || "-".equals(operation) || "*".equals(operation) ||
+            "/".equals(operation) || "%".equals(operation))
+                return operation;
+        else
+            throw new UnsupportedOperationException(); 
     }
 }
